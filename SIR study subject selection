@@ -133,6 +133,12 @@ imd<-read.csv("IMD2010.csv") #Call data from lookup table (see Open Source Resou
 imd<-imd[,c("LSOA","IMD_Decile2010")]
 crea<-merge(crea,imd,all.x=TRUE)
 
+#Add practise data
+a<-unique(sir.data$Source)
+codes<-read.table("ccg-practice-list.csv",header=TRUE,sep=",") #Call data from lookup table (see Open Source Resources repo)
+length(codes$Code)
+a<-merge(a,codes,all.x=TRUE)
+crea<-merge(crea,a,all.x=TRUE)
 
 #LIMIT TO PATIENTS WITH AT LEAST 2 POST 2008 CREATININE TEST VALUES
 
